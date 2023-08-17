@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'com.google.truth:truth:1.1.5'
+    testImplementation 'junit:junit:4.13.2'
+//    implementation 'com.google.guava:guava:32.1.1-jre'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}

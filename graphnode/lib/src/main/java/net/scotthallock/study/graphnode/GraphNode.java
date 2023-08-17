@@ -10,4 +10,19 @@ public class GraphNode {
   public int value() {
     return value;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof GraphNode)) {
+      return false;
+    }
+
+    GraphNode other = (GraphNode) o;
+
+    if (this.value == other.value) {
+      return true;
+    }
+
+    return false;
+  }
 }

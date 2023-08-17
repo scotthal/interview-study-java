@@ -1,0 +1,18 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "editorconfig.editorconfig",
+        "fwcd.kotlin",
+        "ms-azuretools.vscode-docker",
+        "pivotal.vscode-boot-dev-pack",
+        "visualstudioexptteam.vscodeintellicode",
+        "vscjava.vscode-gradle",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  }
+}

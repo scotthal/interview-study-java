@@ -34,7 +34,7 @@ public class GraphNode {
     return deepCopyRecurse(this, created);
   }
 
-  private GraphNode deepCopyRecurse(GraphNode node, Map<Integer, GraphNode> created) {
+  private static GraphNode deepCopyRecurse(GraphNode node, Map<Integer, GraphNode> created) {
     if (created.containsKey(node.value)) {
       return created.get(node.value);
     }

@@ -49,4 +49,22 @@ public class GraphNodeTest {
     assertThat(node0).isNotEqualTo(node1);
   }
 
+  @Test
+  public void equalValuesEqualHashcodes() {
+    GraphNode node0 = new GraphNode(GRAPH_NODE_VALUE_0);
+    GraphNode node1 = new GraphNode(GRAPH_NODE_VALUE_0);
+
+    assertThat(node0).isEqualTo(node1);
+    assertThat(node0.hashCode()).isEqualTo(node1.hashCode());
+  }
+
+  @Test
+  public void unequalValuesUnequalHashCodes() {
+    GraphNode node0 = new GraphNode(GRAPH_NODE_VALUE_0);
+    GraphNode node1 = new GraphNode(GRAPH_NODE_VALUE_1);
+
+    assertThat(node0).isNotEqualTo(node1);
+    assertThat(node0.hashCode()).isNotEqualTo(node1.hashCode());
+  }
+
 }

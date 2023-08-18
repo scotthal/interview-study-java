@@ -25,4 +25,10 @@ public class GraphNode {
 
     return false;
   }
+
+  @Override
+  public int hashCode() {
+    int result = Integer.hashCode(value);
+    return result;
+  }
 }

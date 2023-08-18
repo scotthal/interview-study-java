@@ -67,7 +67,7 @@ public class GraphNode {
   public int hashCode() {
     int result = Integer.hashCode(value);
     for (GraphNode neighbor : neighbors) {
-      result = 31 * Integer.hashCode(neighbor.value);
+      result = 31 * result + Integer.hashCode(neighbor.value);
     }
     return result;
   }

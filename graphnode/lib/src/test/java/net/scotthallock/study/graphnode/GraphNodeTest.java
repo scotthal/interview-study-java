@@ -3,6 +3,8 @@ package net.scotthallock.study.graphnode;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.google.common.collect.ImmutableSet;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.Test;
 
 public class GraphNodeTest {
@@ -146,4 +148,78 @@ public class GraphNodeTest {
     assertThat(neighbors).contains(node2);
   }
 
+  @Test
+  public void letsCopyADiamond() {
+    GraphNode node0 = new GraphNode(GRAPH_NODE_VALUE_0);
+    GraphNode node1 = new GraphNode(GRAPH_NODE_VALUE_1);
+    GraphNode node2 = new GraphNode(GRAPH_NODE_VALUE_2);
+    GraphNode node3 = new GraphNode(GRAPH_NODE_VALUE_3);
+
+    node0.addNeighbor(node1);
+    node0.addNeighbor(node2);
+
+    node3.addNeighbor(node1);
+    node3.addNeighbor(node2);
+
+    GraphNode node0Copy = node0.deepCopy();
+    assertThat(node0Copy == node0).isFalse();
+    assertThat(node0Copy).isNotEqualTo(node0);
+    assertThat(node0Copy.value()).isEqualTo(node0.value());
+
+    ImmutableSet<GraphNode> neighbors = node0Copy.neighbors();
+    assertThat(neighbors.size()).isEqualTo(2);
+
+    Set<Integer> neighborValues = new HashSet<Integer>();
+    GraphNode node1Copy = null;
+    for (GraphNode neighbor : neighbors) {
+      if (neighbor.value() == GRAPH_NODE_VALUE_1) {
+        node1Copy = neighbor;
+      }
+      neighborValues.add(neighbor.value());
+    }
+    assertThat(neighborValues.size()).isEqualTo(2);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_1);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_2);
+    assertThat(node1Copy).isNotNull();
+    assertThat(node1Copy).isNotEqualTo(node1);
+
+    neighborValues.clear();
+    neighbors = node1Copy.neighbors();
+    GraphNode node3Copy = null;
+    for (GraphNode neighbor : neighbors) {
+      if (neighbor.value() == GRAPH_NODE_VALUE_3) {
+        node3Copy = neighbor;
+      }
+      neighborValues.add(neighbor.value());
+    }
+    assertThat(neighborValues.size()).isEqualTo(2);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_0);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_3);
+    assertThat(node3Copy).isNotNull();
+    assertThat(node3Copy).isNotEqualTo(node3);
+
+    neighborValues.clear();
+    neighbors = node3Copy.neighbors();
+    GraphNode node2Copy = null;
+    for (GraphNode neighbor : neighbors) {
+      if (neighbor.value() == GRAPH_NODE_VALUE_2) {
+        node2Copy = neighbor;
+      }
+      neighborValues.add(neighbor.value());
+    }
+    assertThat(neighborValues.size()).isEqualTo(2);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_1);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_2);
+    assertThat(node2Copy).isNotNull();
+    assertThat(node2Copy).isNotEqualTo(node2);
+
+    neighborValues.clear();
+    neighbors = node2Copy.neighbors();
+    for (GraphNode neighbor : neighbors) {
+      neighborValues.add(neighbor.value());
+    }
+    assertThat(neighborValues.size()).isEqualTo(2);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_0);
+    assertThat(neighborValues).contains(GRAPH_NODE_VALUE_3);
+  }
 }

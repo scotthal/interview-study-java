@@ -71,4 +71,23 @@ public class GraphNode {
     }
     return result;
   }
+
+  @Override
+  public String toString() {
+    StringBuilder result = new StringBuilder();
+
+    result.append("GraphNode value: ");
+    result.append(value);
+    result.append(" Neighbors: ");
+
+    GraphNode[] neighborsArray = neighbors.toArray(new GraphNode[0]);
+    for (int i = 0; i < neighborsArray.length; ++i) {
+      result.append(neighborsArray[i].value);
+      if (i < neighborsArray.length - 1) {
+        result.append(", ");
+      }
+    }
+
+    return result.toString();
+  }
 }

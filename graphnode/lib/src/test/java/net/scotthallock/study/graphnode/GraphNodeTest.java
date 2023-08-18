@@ -222,4 +222,19 @@ public class GraphNodeTest {
     assertThat(neighborValues).contains(GRAPH_NODE_VALUE_0);
     assertThat(neighborValues).contains(GRAPH_NODE_VALUE_3);
   }
+
+  @Test
+  public void toStringStringifies() {
+    GraphNode node0 = new GraphNode(GRAPH_NODE_VALUE_0);
+    GraphNode node1 = new GraphNode(GRAPH_NODE_VALUE_1);
+    GraphNode node2 = new GraphNode(GRAPH_NODE_VALUE_2);
+    String expected = String.format("GraphNode value: %d Neighbors: %d, %d",
+        GRAPH_NODE_VALUE_0, GRAPH_NODE_VALUE_2, GRAPH_NODE_VALUE_1);
+
+    node0.addNeighbor(node1);
+    node0.addNeighbor(node2);
+
+    String node0String = node0.toString();
+    assertThat(node0String).isEqualTo(expected);
+  }
 }

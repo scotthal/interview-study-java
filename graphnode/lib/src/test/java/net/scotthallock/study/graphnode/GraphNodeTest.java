@@ -67,4 +67,11 @@ public class GraphNodeTest {
     assertThat(node0.hashCode()).isNotEqualTo(node1.hashCode());
   }
 
+  @Test
+  public void initialNodeHasNoNeighbors() {
+    GraphNode node0 = new GraphNode(GRAPH_NODE_VALUE_0);
+
+    assertThat(node0.neighbors()).isEmpty();
+  }
+
 }

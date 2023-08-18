@@ -7,9 +7,9 @@ repositories {
 }
 
 dependencies {
+    api 'com.google.guava:guava:32.1.2-jre'
     testImplementation 'com.google.truth:truth:1.1.5'
     testImplementation 'junit:junit:4.13.2'
-//    implementation 'com.google.guava:guava:32.1.1-jre'
 }
 
 java {

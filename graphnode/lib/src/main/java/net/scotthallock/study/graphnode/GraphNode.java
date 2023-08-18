@@ -21,6 +21,11 @@ public class GraphNode {
     return ImmutableSet.copyOf(neighbors);
   }
 
+  public void addNeighbor(GraphNode neighbor) {
+    this.neighbors.add(neighbor);
+    neighbor.neighbors.add(this);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (!(o instanceof GraphNode)) {
@@ -39,7 +44,9 @@ public class GraphNode {
   @Override
   public int hashCode() {
     int result = Integer.hashCode(value);
-    result = 31 * result + neighbors.hashCode();
+    for (GraphNode neighbor : neighbors) {
+      result = 31 * Integer.hashCode(neighbor.value);
+    }
     return result;
   }
 }

@@ -14,5 +14,10 @@
         "vscjava.vscode-java-pack"
       ]
     }
-  }
+  },
+  "postCreateCommand": [
+    "sh",
+    ".devcontainer/update-paths.sh"
+  ]
+  // forwardPorts here
 }
